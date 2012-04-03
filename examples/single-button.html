@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" dir="ltr" lang="en-US"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" dir="ltr" lang="en-US"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" dir="ltr" lang="en-US"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" dir="ltr" lang="en-US"> <!--<![endif]-->
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="mssmarttagspreventparsing" content="true">
+  <meta http-equiv="imagetoolbar" content="false">
+
+  <title>Fullscreen Demo</title>
+
+  <link rel="stylesheet" type="text/css" media="all" href="demo.css">
+
+</head>
+<body>
+  <div class="site">
+    <div id="top-div">
+      <h1>Blue Div</h1>
+      <button type="button" id="top-btn">Go Fullscreen</button>
+    </div>
+
+    <div id="bottom-div">
+      <h1>Green Div</h1>
+      <button type="button" id="bottom-btn">Go Fullscreen</button>
+    </div>
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script src="../fsapi.min.js"></script>
+  <script type="text/javascript">
+
+    $(document).ready(function(){
+      // init 
+      $('#top-div').fsapi();
+
+      // open & close action
+      $('#top-btn').click(function(){
+        if ($('#top-div').fsapi('isFull')) {
+          $('#top-div').fsapi('close');
+          $(this).text('Go Fullscreen');
+        } else {
+          $('#top-div').fsapi('open');
+          $(this).text('Exit Fullscreen');
+        }
+      });
+
+
+      // init and set a callback
+      $('#bottom-div').fsapi(function(obj, open){
+        if (open) {
+          var w   = obj.fsapi('width');
+          var h   = obj.fsapi('height');
+
+          obj.width(w).height(h).css('margin', '0');
+        } else {
+          obj.width(200).height(200).css('margin', '20px auto');
+        }
+      });
+      
+      // open & close action
+      $('#bottom-btn').click(function(){
+        if ($('#bottom-div').fsapi('isFull')) {
+          $('#bottom-div').fsapi('close');
+          $(this).text('Go Fullscreen');
+        } else {
+          $('#bottom-div').fsapi('open');
+          $(this).text('Exit Fullscreen');
+        }
+      });
+
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,43 @@
+{
+    "name": "fsapi",
+    "version": "1.1",
+    "title": "jQuery Full Screen API (fsapi)",
+    "author": {
+        "name": "James Nash",
+        "url": "http://www.atthebox.com/"
+    },
+    "licenses": [
+        {
+            "type": "MIT",
+            "url": "MIT-LICENSE.txt"
+        }
+    ],
+    "dependencies": {
+        "jquery": "<=1.7.1"
+    },
+    "description": "The Fullscreen API is a still experimental feature of HTML5. Currently browser support is limited to Firefox, Chrome and Safari.",
+    "keywords": [
+        "html5",
+        "full screen",
+        "fullscreen"
+    ],
+    "homepage": "https://github.com/atthebox/jQuery-FullScreen",
+    "maintainers": [
+        {
+            "name": "James Nash",
+            "url": "https://github.com/atthebox"
+        },
+        {
+            "name": "Martin Angelov",
+            "url": "https://github.com/martinaglv"
+        }
+    ],
+    "files": [
+      "examples",
+      "MIT-LICENSE.txt",
+      "fsapi.js",
+      "fsapi.min.js",
+      "history.txt",]
+      "readme.md"
+    ]
+}

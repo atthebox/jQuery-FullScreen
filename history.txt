@@ -1,0 +1,6 @@
+This project was originally forked from Martin Angelov's "jQuery FullScreen Plugin"
+https://github.com/martinaglv/jQuery-FullScreen
+http://tutorialzine.com/2012/02/enhance-your-website-fullscreen-api/
+MIT License
+
+Thanks Martin. 
