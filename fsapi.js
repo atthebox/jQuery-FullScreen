@@ -6,8 +6,8 @@
  * @license     MIT License
  */
 
-(function($){
-
+;(function($, doc, scrn){
+	"use strict";
   // storage of callbacks
   // & options for each element
   var fsConfig   = {};
@@ -45,11 +45,11 @@
   };
 
   var _supportFullScreen = function(){
-    var doc = document.documentElement;
+    var d = doc.documentElement;
 
-    return  ('requestFullscreen' in doc) ||
-        ('mozRequestFullScreen' in doc && document.mozFullScreenEnabled) ||
-        ('webkitRequestFullScreen' in doc);
+    return  ('requestFullscreen' in d) ||
+        ('mozRequestFullScreen' in d && doc.mozFullScreenEnabled) ||
+        ('webkitRequestFullScreen' in d);
   };
 
   var _requestFullScreen = function (elem){
@@ -66,20 +66,20 @@
   };
 
   var _fullScreenStatus = function (){
-    return  document.fullscreen ||
-        document.mozFullScreen ||
-        document.webkitIsFullScreen;
+    return  doc.fullscreen ||
+        doc.mozFullScreen ||
+        doc.webkitIsFullScreen;
   };
 
   var _cancelFullScreen = function (){
-    if (document.exitFullscreen) {
-        document.exitFullscreen();
+    if (doc.exitFullscreen) {
+        doc.exitFullscreen();
     }
-    else if (document.mozCancelFullScreen) {
-        document.mozCancelFullScreen();
+    else if (doc.mozCancelFullScreen) {
+        doc.mozCancelFullScreen();
     }
-    else if (document.webkitCancelFullScreen) {
-        document.webkitCancelFullScreen();
+    else if (doc.webkitCancelFullScreen) {
+        doc.webkitCancelFullScreen();
     }
   };
 
@@ -94,7 +94,7 @@
           if(!$.support.fullscreen){
               return this;
           }
-      
+
           if (typeof options === 'function')
           {
               cb = options;
@@ -102,21 +102,21 @@
           }
           if (cb == undefined) {
                cb = function(){};
-          } 
-          
-          $(document).off("fullscreenchange mozfullscreenchange webkitfullscreenchange", _eventCallback);
-          $(document).on("fullscreenchange mozfullscreenchange webkitfullscreenchange", _eventCallback);
+          }
+
+          $(doc).off("fullscreenchange mozfullscreenchange webkitfullscreenchange", _eventCallback);
+          $(doc).on("fullscreenchange mozfullscreenchange webkitfullscreenchange", _eventCallback);
 
           return this.each(function() {
 
              var $this   = $(this);
              var key     = _randomString(5);
              var tmp     = Object.create(defaults);
-            
+
              $.extend(tmp, options);
-            
+
              fsConfig[key]   = tmp;
-             fsCallback[key] = cb;         
+             fsCallback[key] = cb;
 
              $this.attr('fskey', key);
 
@@ -128,11 +128,11 @@
           }
           var key = this.attr('fskey');
           var fs = $('div#fs-modal');
-        
+
           this.find("*").removeClass(fsConfig[key].fullscreen_class);
           this.removeClass(fsConfig[key].fullscreen_class).insertBefore(fs);
           fs.remove();
-        
+
           return this;
       },
       "open" : function() {
@@ -144,7 +144,7 @@
             'css' : {
                 'overflow'   : 'hidden',
                 'margin'     : '0',
-                'padding'    : '0',        
+                'padding'    : '0',
                 'background' : fsConfig[key].background,
                 'width'      : '100%',
                 'height'     : '100%'
@@ -153,7 +153,7 @@
 
           var elem = this;
           elem.addClass(fsConfig[key].fullscreen_class);
-        
+
           if (fsConfig[key].fullscreen_children) {
             elem.find('*').addClass(fsConfig[key].fullscreen_class);
           }
@@ -165,10 +165,10 @@
           return this;
     },
     "width" : function() {
-        return screen.width;
+        return scrn.width;
     },
     "height" : function() {
-        return screen.height;
+        return scrn.height;
     },
     "isFull" : function() {
         if (_fullScreenStatus()){
@@ -191,4 +191,4 @@
 
   };
 
-})(jQuery);
+})(jQuery, document, screen);
