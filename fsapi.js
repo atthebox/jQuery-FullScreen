@@ -24,13 +24,13 @@
   // These helper functions available only to our plugin scope.
 
   var _eventCallback = function (){
-    var current = $.currentFullScreenDiv;
+    var current = $('body').attr('fskey');
     var obj = $('[fskey=' + current + ']');
     if (current != '') {
       fsCallback[current](obj, _fullScreenStatus());
     }
     if (!_fullScreenStatus()) {
-      $.currentFullScreenDiv = '';
+      $('body').attr('fskey', '');
     }
   };
 
@@ -107,6 +107,8 @@
           $(doc).off("fullscreenchange mozfullscreenchange webkitfullscreenchange", _eventCallback);
           $(doc).on("fullscreenchange mozfullscreenchange webkitfullscreenchange", _eventCallback);
 
+          $('body').attr('fskey', '');
+
           return this.each(function() {
 
              var $this   = $(this);
@@ -137,6 +139,7 @@
       },
       "open" : function() {
           var key = this.attr('fskey');
+          $('body').attr('fskey', key);
           $.currentFullScreenDiv = key;
 
           var fs = $('<div>', {
