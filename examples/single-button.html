@@ -29,11 +29,11 @@
   </div>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-  <script src="../fsapi.min.js"></script>
+  <script src="../fsapi.js"></script>
   <script type="text/javascript">
 
     $(document).ready(function(){
-      // init 
+      // init
       $('#top-div').fsapi();
 
       // open & close action
@@ -59,7 +59,7 @@
           obj.width(200).height(200).css('margin', '20px auto');
         }
       });
-      
+
       // open & close action
       $('#bottom-btn').click(function(){
         if ($('#bottom-div').fsapi('isFull')) {

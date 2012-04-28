@@ -35,7 +35,7 @@
   </div>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-  <script src="../fsapi.min.js"></script>
+  <script src="../fsapi.js"></script>
   <script type="text/javascript">
 
     $(document).ready(function(){
@@ -67,14 +67,14 @@
           obj.width(200).height(200).css('margin', '20px auto');
         }
       });
-      
+
       // open action
       $('#bottom-btn-open').click(function(){
         $(this).hide();
         $('#bottom-btn-close').show();
         $('#bottom-div').fsapi('open');
       });
-      
+
       // close action
       $('#bottom-btn-close').click(function(){
         $(this).hide();
